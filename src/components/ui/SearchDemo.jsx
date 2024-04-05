@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react";
+import { SearchTextContext } from "@/app/provider/SearchTextProvider";
+import { useContext, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-export default function SearchDemo({ demos, setSearchedDemo }) {
+export default function SearchDemo({ demos }) {
   const [searchText, setSearchTex] = useState("");
   const [categories, setCategories] = useState([]);
+  const {setSearchText} = useContext(SearchTextContext)
 
   const handleInputText = (e) => {
     const value = e.target.value;
@@ -17,8 +19,7 @@ export default function SearchDemo({ demos, setSearchedDemo }) {
 
       setCategories(filteredDemo?.map((demo) => demo.demo_category));
     } else if (value === "") {
-      console.log('first')
-      setSearchedDemo(demos)
+      setSearchText("")
       setCategories([])
     } else {
       setCategories([]);
@@ -27,17 +28,7 @@ export default function SearchDemo({ demos, setSearchedDemo }) {
 
   const handleSearchBlog = (e) => {
     e.preventDefault();
-    const enteredSearchValue = e.target.search.value.toLowerCase();
-
-    if (enteredSearchValue.length >= 1) {
-      const filteredDemo = demos?.filter((demo) =>
-        demo?.demo_category.toLowerCase().includes(enteredSearchValue)
-      );
-      setSearchedDemo(filteredDemo);
-    } else {
-      // Clear the search results if less than 3 characters are entered
-      setSearchedDemo(null);
-    }
+    setSearchText(searchText)
   };
 
   const handleCategory = (category) => {

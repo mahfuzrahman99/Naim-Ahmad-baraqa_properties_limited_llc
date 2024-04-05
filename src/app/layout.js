@@ -2,6 +2,7 @@ import { PhotoProvider } from "@/components/ui/PhotoView";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./provider/AuthProvider";
+import SearchTextProvider from "./provider/SearchTextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light">
       <body className={inter.className + " bg-[#f2f2f2] text-[#141414]"}>
         <PhotoProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <SearchTextProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </SearchTextProvider>
         </PhotoProvider>
       </body>
     </html>

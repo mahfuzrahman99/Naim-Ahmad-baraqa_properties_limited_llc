@@ -25,6 +25,7 @@ export default function DemoOneCard({demo}) {
               width={390}
               height={200}
               data-aos-duration="1000"
+              placeholder="blur"
               className="md:h-[230px] h-[200px] md:w-[390px] w-[300px] shadow-2xl rounded-lg pt-4 md:pt-auto"
               alt=""
             />
@@ -38,6 +39,7 @@ export default function DemoOneCard({demo}) {
               data-aos-delay="50"
               width={390}
               height={200}
+              placeholder="blur"
               data-aos-duration="1000"
               className="md:h-[190px] h-[200px] md:w-[320px] w-[300px] absolute md:top-[70%] md:-right-[10%] shadow-2xl md:border-8 border-white rounded-lg my-2 md:my-auto"
               alt=""
