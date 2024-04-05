@@ -5,7 +5,7 @@ import navLogo from "@/assets/logo.png"
 const Banner = () => {
     return (
         <div
-      className="hero  h-[50vh] md:h-[80vh] shadow-xl shadow-[#a59fcd]"
+      className="hero  h-[35vh] md:h-[80vh] shadow-xl shadow-[#a59fcd]"
       style={{
         backgroundImage: "url(https://i.ibb.co/3SxXgtL/Untitled-design.jpg)",
         backgroundSize: 'cover',
