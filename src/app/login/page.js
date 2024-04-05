@@ -1,19 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import loginImg from "../assets/login.jpg";
+"use client";
+import loginImg from "@/assets/login.jpg";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import useAxiosPublic from "../hooks/useAxiosPublic";
-import { BsEye } from "react-icons/bs";
-import { BsEyeSlash } from "react-icons/bs";
+import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
+  const navigate = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [show, setShow] = useState(true);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,15 +22,11 @@ const Login = () => {
       email: email,
       password: password,
     };
-
     try {
-      const res = await axiosPublic.post("/api/login", userCredentials);
-
-      signInUser(res.data);
-
+      const data = await signInUser(userCredentials);
+      console.log(data);
       setIsLoading(false);
-
-      if (res.data && res.data._id) {
+      if (data && data._id) {
         Swal.fire({
           position: "top",
           icon: "success",
@@ -40,7 +34,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate.push("/");
       }
     } catch (error) {
       setIsLoading(false);
@@ -57,7 +51,7 @@ const Login = () => {
     <div
       className="bg-black bg-opacity-60 h-[100vh] flex items-center "
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${loginImg})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${loginImg.src}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -74,7 +68,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
-              className="p-2 rounded-md bg-white outline-none text-black"
+              className="p-2 rounded-md bg-white text-black"
               placeholder="Input your valid email here"
             />
           </div>
@@ -98,17 +92,6 @@ const Login = () => {
               </span>
             </div>
           </div>
-          {/* <div className="flex flex-col mt-2 col-span-2">
-            <label htmlFor="password" className="text-white">
-              Password:
-            </label>
-            <input
-              type="text"
-              name="password"
-              className="p-2 rounded-md bg-white text-black"
-              placeholder="Input your password here"
-            />
-          </div> */}
           <div className="flex justify-center w-2/4 mx-auto mt-2 col-span-2">
             <button
               disabled={isLoading}

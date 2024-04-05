@@ -1,14 +1,14 @@
-import React from 'react'
-import Image from 'next/image'
+import Image from "next/image";
 
 import aboutLogo from "@/assets/logo.png";
+import Footer from "@/components/shared/Footer";
+import Navbar from "@/components/shared/Navbar";
 import { TiTick } from "react-icons/ti";
-import Footer from '@/components/shared/Footer';
 
 export default function AboutPage() {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="max-w-6xl mx-auto md:mb-10 p-4 md:p-0">
         <div className="flex justify-center">
           <Image
@@ -354,5 +354,5 @@ export default function AboutPage() {
       </div>
       <Footer />
     </div>
-  )
+  );
 }

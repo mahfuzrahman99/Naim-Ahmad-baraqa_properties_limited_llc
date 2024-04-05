@@ -1,7 +1,35 @@
-import React from "react";
-import Image from "next/image";
+import DashboardRoute from "../navbar/DashboardRoute";
+import NavLink from "../navbar/NavLink";
+import ProfileDropdown from "../navbar/ProfileDropdown";
 
 const Navbar = () => {
+  const navLinks = (
+    <>
+      <li>
+        <NavLink
+          href="/"
+        >
+          HOME
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          href="/about"
+        >
+          ABOUT US
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          href="/ourWorks"
+        >
+          OUR WORKS
+        </NavLink>
+      </li>
+      <DashboardRoute/>
+    </>
+  );
+
   return (
     <div
       className={`md:pl-5 navbar z-50  
@@ -16,9 +44,7 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-5 w-5 z-50 ${
-                isDarkTheme ? "text-[#a6adbb]" : "text-[#8A8B8C]"
-              }`}
+              className={`h-5 w-5 z-50 text-[#8A8B8C]`}
               fill="none"
               viewBox="0 0 20 20"
               stroke="currentColor"
@@ -44,41 +70,7 @@ const Navbar = () => {
         <div className=" hidden lg:flex justify-center items-center">
           <ul className="menu menu-horizontal text-black">{navLinks}</ul>
         </div>
-        <div className="dropdown dropdown-end flex items-center ">
-          {user ? (
-            <div className="dropdown z-10 dropdown-bottom dropdown-end">
-              <figure tabIndex={0}>
-                <Image
-                  src={user?.photoURL}
-                  className="h-[35px] md:h-[40px] w-[40px] rounded-full"
-                  alt={user?.name ? user?.name : "Not Found"}
-                />
-              </figure>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-[#0B0633] bg-opacity-60"
-              >
-                <li>
-                  <a className="text-[#fff]">
-                    {user?.name ? user?.name : "No name available"}
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <button
-                      onClick={handleLogout}
-                      className=" btn-sm border-none btn-outline rounded-md font-semibold uppercase hover:bg-transparent  text-[#fff]"
-                    >
-                      Logout
-                    </button>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
+        <ProfileDropdown/>
       </div>
     </div>
   );
