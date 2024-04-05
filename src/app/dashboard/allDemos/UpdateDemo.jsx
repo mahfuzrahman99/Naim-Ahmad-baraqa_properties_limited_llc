@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
 const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
-
   const {
     handleSubmit,
     register,
@@ -47,7 +46,10 @@ const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
         demo_category: data.demo_category,
       };
       console.log(demoItem);
-      const demoRes = await axios.patch(`http://localhost:5000/api/demos/${_id}`, demoItem);
+      const demoRes = await axios.patch(
+        `https://baraqa-properties-server.vercel.app/api/demos/${_id}`,
+        demoItem
+      );
       console.log("console from patch request", demoRes.data);
       if (demoRes.data.modifiedCount) {
         reset();
@@ -162,8 +164,8 @@ const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
                     </label>
                     <div>
                       <Image
-                      width={340}
-                      height={170}
+                        width={340}
+                        height={170}
                         className="rounded-md md:h-[170px] md:w-[340px] h-[120px] w-[230px] mb-2"
                         src={demo_before_image}
                         alt=""
@@ -193,8 +195,8 @@ const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
                     </label>
                     <div>
                       <Image
-                      height={170}
-                      width={340}
+                        height={170}
+                        width={340}
                         className="rounded-md md:h-[170px] md:w-[340px] h-[120px] w-[230px] mb-2"
                         src={demo_after_image}
                         alt=""

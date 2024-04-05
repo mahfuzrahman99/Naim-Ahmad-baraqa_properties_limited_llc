@@ -28,7 +28,9 @@ const AllUsers = () => {
     });
     if (confirmed.isConfirmed) {
       try {
-        const res = await axios.delete(`http://localhost:5000/api/users/${id}`);
+        const res = await axios.delete(
+          `https://baraqa-properties-server.vercel.app/api/users/${id}`
+        );
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
@@ -49,11 +51,11 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto w-[300px] md:w-auto md:mt-20 ">
-      <div>
+    <div className="max-w-5xl mx-auto w-[95vw] md:w-auto h-[83vh]">
+      <div className="mt-5 md:mt-20">
         <button
           onClick={() => setShowModal(true)}
-          className="btn btn-ghost bg-[#a9a3cf] hover:bg-[#311A36] transform duration-1000 text-white p-2 rounded-md"
+          className="btn btn-ghost bg-[#a9a3cf] hover:bg-[#311A36] transform duration-1000 text-white p-2 rounded-md w-[120px]"
         >
           ADD USER
         </button>
@@ -64,7 +66,13 @@ const AllUsers = () => {
           <h1 className="text-xl md:text-3xl font-bold  bg-gradient-to-r from-indigo-500 via-[#3a3271] to-[#E91E63] bg-clip-text text-transparent">
             Total Users: {users.length}
           </h1>
-          <div>
+          <div
+            className=" overflow-x-auto h-[60vh] md:h-[69vh] overflow-y-auto"
+            style={{
+              scrollbarWidth: "thin",
+              scrollbarColor: "#a9a3cf #f1f1f1",
+            }}
+          >
             <table className="min-w-full bg-white overflow-x-auto">
               <thead className="rounded-t-xl bg-[#A9A3CF]">
                 <tr className="rounded-t-xl bg-[#A9A3CF]">

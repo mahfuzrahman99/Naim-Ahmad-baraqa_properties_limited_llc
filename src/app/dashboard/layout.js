@@ -49,8 +49,9 @@ export default function DashboardLayout({ children }) {
             <div className="w-50 min-h-screen md:hidden bg-[#a9a3cf]">
               <ul className="menu p-4">
                 <li>
-                  <NavLink href="/dashboard/allDemos">ALL Projects</NavLink>
+                  <NavLink href="/dashboard/allDemos">ALL DEMOS</NavLink>
                 </li>
+                <SuperAdminRoute />
                 <div className="divider"></div>
                 <li>
                   <NavLink href="/">HOME</NavLink>

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import DemoOneCard from "./DemoOneCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
-// AOS.init();
+
 
 const OurWorks = () => {
   const [demos, setDemos] = useState();
@@ -18,6 +18,7 @@ const OurWorks = () => {
 
   useEffect(() => {
     getDemos().then((data) => setDemos(data));
+    AOS.init();
   }, []);
 
   return (

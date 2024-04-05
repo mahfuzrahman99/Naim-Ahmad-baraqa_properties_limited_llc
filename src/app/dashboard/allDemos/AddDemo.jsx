@@ -1,4 +1,4 @@
-"use client"
+"use client";
 /* eslint-disable react/prop-types */
 
 import axios from "axios";
@@ -14,7 +14,6 @@ const AddDemo = ({ showModal, setShowModal }) => {
     reset,
     formState: { errors },
   } = useForm();
-
 
   const navigate = useRouter();
 
@@ -44,7 +43,10 @@ const AddDemo = ({ showModal, setShowModal }) => {
         demo_category: data.demo_category,
       };
       console.log(demoItem);
-      const houseRes = await axios.post("http://localhost:5000/api/demos", demoItem);
+      const houseRes = await axios.post(
+        "https://baraqa-properties-server.vercel.app/api/demos",
+        demoItem
+      );
       console.log(houseRes.data);
       if (houseRes.data.insertedId) {
         // show success popup
