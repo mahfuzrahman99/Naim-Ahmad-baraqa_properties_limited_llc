@@ -12,7 +12,7 @@ export default function DashboardRoute() {
     admin ? (
       <li>
         <NavLink
-          href="/dashboard"
+          href="/dashboard/allDemos"
         >
           DASHBOARD
         </NavLink>
