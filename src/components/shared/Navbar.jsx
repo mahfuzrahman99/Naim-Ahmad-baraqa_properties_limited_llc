@@ -1,7 +1,51 @@
-import React from "react";
-import Image from "next/image";
+import NavLink from "../navbar/NavLink";
 
 const Navbar = () => {
+  const navLinks = (
+    <>
+      <li>
+        <NavLink
+          href="/"
+          
+        >
+          HOME
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          href="/about"
+        
+        >
+          ABOUT US
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          href="/ourWorks"
+        >
+          OUR WORKS
+        </NavLink>
+      </li>
+      {/* {admin || admin0 ? (
+        <li>
+          <NavLink
+            href="/owner_dashboard/allDemos"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "text-[#311A36] hover:text-[#311A36] hover:font-bold underline font-bold"
+                : "font-bold hover:text-[#8A8B8C] hover:font-bold  text-[#8A8B8C]"
+            }
+          >
+            DASHBOARD
+          </NavLink>
+        </li>
+      ) : null
+      } */}
+    </>
+  );
+
   return (
     <div
       className={`md:pl-5 navbar z-50  
@@ -16,9 +60,7 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-5 w-5 z-50 ${
-                isDarkTheme ? "text-[#a6adbb]" : "text-[#8A8B8C]"
-              }`}
+              className={`h-5 w-5 z-50 text-[#8A8B8C]`}
               fill="none"
               viewBox="0 0 20 20"
               stroke="currentColor"
@@ -45,7 +87,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal text-black">{navLinks}</ul>
         </div>
         <div className="dropdown dropdown-end flex items-center ">
-          {user ? (
+          {/* {user ? (
             <div className="dropdown z-10 dropdown-bottom dropdown-end">
               <figure tabIndex={0}>
                 <Image
@@ -77,7 +119,7 @@ const Navbar = () => {
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       </div>
     </div>
