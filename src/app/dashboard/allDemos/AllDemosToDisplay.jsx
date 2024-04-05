@@ -2,10 +2,6 @@
 import AllDemosRow from "./AllDemosRow";
 
 const AllDemosToDisplay = ({ demosToDisplay, refetch }) => {
-  // const demosArray = Array.isArray(demosToDisplay) ? demosToDisplay : Object.values(demosToDisplay);
-
-  // console.log( demosToDisplay );
-  // console.log( typeof(demosToDisplay) );
   return (
     <div className="max-w-5xl mx-auto w-[300px] md:w-auto">
       <div className="bg-gray-100 md:p-4 py-4 md:py-0">

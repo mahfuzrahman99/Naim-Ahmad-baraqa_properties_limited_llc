@@ -4,11 +4,11 @@ import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import SearchDemo from "@/components/ui/SearchDemo";
 import { getDemos } from "@/utils/fetchData";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import DemoOneCard from "./DemoOneCard";
-AOS.init();
+import AOS from "aos";
+import "aos/dist/aos.css";
+// AOS.init();
 
 const OurWorks = () => {
   const [demos, setDemos] = useState();

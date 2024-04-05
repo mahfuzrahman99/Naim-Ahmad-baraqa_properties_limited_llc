@@ -1,6 +1,7 @@
 import { PhotoView } from "@/components/ui/PhotoView";
 import Image from "next/image";
 
+
 export default function DemoOneCard({demo}) {
 
   const {

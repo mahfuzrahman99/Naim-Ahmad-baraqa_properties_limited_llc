@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import axios from "axios";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 // import useFetchDemos from "../../hooks/useFetchDemos";
@@ -160,7 +161,9 @@ const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
                       Before Image:
                     </label>
                     <div>
-                      <img
+                      <Image
+                      width={340}
+                      height={170}
                         className="rounded-md md:h-[170px] md:w-[340px] h-[120px] w-[230px] mb-2"
                         src={demo_before_image}
                         alt=""
@@ -189,7 +192,9 @@ const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
                       After Image:
                     </label>
                     <div>
-                      <img
+                      <Image
+                      height={170}
+                      width={340}
                         className="rounded-md md:h-[170px] md:w-[340px] h-[120px] w-[230px] mb-2"
                         src={demo_after_image}
                         alt=""

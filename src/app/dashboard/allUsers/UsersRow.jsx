@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { AuthContext } from "@/app/provider/AuthProvider";
 import axios from "axios";
+import Image from "next/image";
 import { useContext } from "react";
 import { IoPersonRemoveOutline } from "react-icons/io5";
 import { MdSecurityUpdateGood } from "react-icons/md";
@@ -50,7 +51,9 @@ const UsersRow = ({ user, i, handleRemove, refetch }) => {
         <td className="py-2 px-4 border-b-4">{i + 1}</td>
         <td className="py-2 px-4 border-b-4">
           <PhotoView src={user?.photoURL || user1?.photoURL}>
-            <img
+            <Image
+            width={48}
+            height={48}
               className="h-12 w-12 rounded shadow-lg"
               src={user?.photoURL || user1?.photoURL}
               alt={user?.name}
