@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import { BsEye } from "react-icons/bs";
+import { BsEyeSlash } from "react-icons/bs";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
   const navigate = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
 
 
 
