@@ -1,4 +1,6 @@
+import DashboardRoute from "../navbar/DashboardRoute";
 import NavLink from "../navbar/NavLink";
+import ProfileDropdown from "../navbar/ProfileDropdown";
 
 const Navbar = () => {
   const navLinks = (
@@ -6,7 +8,6 @@ const Navbar = () => {
       <li>
         <NavLink
           href="/"
-          
         >
           HOME
         </NavLink>
@@ -14,7 +15,6 @@ const Navbar = () => {
       <li>
         <NavLink
           href="/about"
-        
         >
           ABOUT US
         </NavLink>
@@ -26,23 +26,7 @@ const Navbar = () => {
           OUR WORKS
         </NavLink>
       </li>
-      {/* {admin || admin0 ? (
-        <li>
-          <NavLink
-            href="/owner_dashboard/allDemos"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? "pending"
-                : isActive
-                ? "text-[#311A36] hover:text-[#311A36] hover:font-bold underline font-bold"
-                : "font-bold hover:text-[#8A8B8C] hover:font-bold  text-[#8A8B8C]"
-            }
-          >
-            DASHBOARD
-          </NavLink>
-        </li>
-      ) : null
-      } */}
+      <DashboardRoute/>
     </>
   );
 
@@ -86,41 +70,7 @@ const Navbar = () => {
         <div className=" hidden lg:flex justify-center items-center">
           <ul className="menu menu-horizontal text-black">{navLinks}</ul>
         </div>
-        <div className="dropdown dropdown-end flex items-center ">
-          {/* {user ? (
-            <div className="dropdown z-10 dropdown-bottom dropdown-end">
-              <figure tabIndex={0}>
-                <Image
-                  src={user?.photoURL}
-                  className="h-[35px] md:h-[40px] w-[40px] rounded-full"
-                  alt={user?.name ? user?.name : "Not Found"}
-                />
-              </figure>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-[#0B0633] bg-opacity-60"
-              >
-                <li>
-                  <a className="text-[#fff]">
-                    {user?.name ? user?.name : "No name available"}
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <button
-                      onClick={handleLogout}
-                      className=" btn-sm border-none btn-outline rounded-md font-semibold uppercase hover:bg-transparent  text-[#fff]"
-                    >
-                      Logout
-                    </button>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            ""
-          )} */}
-        </div>
+        <ProfileDropdown/>
       </div>
     </div>
   );

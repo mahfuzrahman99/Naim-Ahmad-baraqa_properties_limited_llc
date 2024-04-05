@@ -8,3 +8,8 @@ export const createUser = async (userData) => {
   });
   return res.json();
 };
+
+export const getDemos = async (userData) => {
+  const res = await fetch("http://localhost:5000/api/demos");
+  return res.json();
+};

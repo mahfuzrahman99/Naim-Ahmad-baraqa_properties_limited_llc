@@ -1,3 +1,4 @@
+import { PhotoProvider } from "@/components/ui/PhotoView";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./provider/AuthProvider";
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className + " bg-[#f2f2f2] text-[#141414]"}>
-        <AuthProvider>{children}</AuthProvider>
+        <PhotoProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </PhotoProvider>
       </body>
     </html>
   );
