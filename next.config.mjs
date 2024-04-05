@@ -8,30 +8,6 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "www.decorilla.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "houseofhipsters.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "assets.architecturaldigest.in",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "fiverr-res.cloudinary.com",
-        port: "",
-        pathname: "/**",
-      },
     ],
   },
 };

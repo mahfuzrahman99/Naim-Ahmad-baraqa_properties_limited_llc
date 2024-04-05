@@ -1,11 +1,11 @@
+"use client"
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Swal from "sweetalert2";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import axios from "axios";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
 const Register = ({ showModal, setShowModal }) => {
-  const axiosPublic = useAxiosPublic();
 
   // console.log(createUser);
   const handleSubmit = async (e) => {
@@ -14,7 +14,7 @@ const Register = ({ showModal, setShowModal }) => {
     const formData = new FormData();
     formData.append("image", e.target.photoURL.files[0]);
 
-    const res = await axiosPublic.post(image_hosting_api, formData, {
+    const res = await axios.post(image_hosting_api, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
