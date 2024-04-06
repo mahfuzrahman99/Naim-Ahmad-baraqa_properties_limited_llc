@@ -1,12 +1,12 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
+
+import { createUser } from "@/lib/fetchData";
 import axios from "axios";
 import Swal from "sweetalert2";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
 const Register = ({ showModal, setShowModal }) => {
 
-  // console.log(createUser);
+  // console.log(loginUser);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,8 +27,8 @@ const Register = ({ showModal, setShowModal }) => {
       const userInfo = { name, email, password, photoURL, role: "Admin" };
 
       if (/^(?=.*[A-Z])(?=.*[\W_]).{6,}$/.test(password)) {
-        axios.post("/api/users", userInfo).then((res) => {
-          if (res.data.insertedId) {
+        createUser(userInfo).then((data) => {
+          if (data.insertedId) {
             e.target.reset();
             Swal.fire({
               position: "top",

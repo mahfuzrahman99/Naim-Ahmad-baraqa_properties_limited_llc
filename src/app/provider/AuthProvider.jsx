@@ -1,6 +1,6 @@
 "use client"
 
-import { createUser } from "@/utils/fetchData";
+import { loginUser } from "@/lib/fetchData";
 import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   const signInUser = async (userInfo) => {
-    const userData = await createUser(userInfo)
+    const userData = await loginUser(userInfo)
     setUser(userData);
     // Local storage e user info store kora
     localStorage.setItem("user", JSON.stringify(userData));

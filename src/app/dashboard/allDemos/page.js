@@ -1,5 +1,5 @@
 import SearchDemo from "@/components/ui/SearchDemo";
-import { getDemos } from "@/utils/fetchData";
+import { getDemos } from "@/lib/fetchData";
 import AllDemosToDisplay from "./AllDemosToDisplay";
 import ModalOpenButton from "./ModalOpenButton";
 

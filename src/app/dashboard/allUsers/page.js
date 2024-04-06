@@ -1,65 +1,14 @@
-"use client";
-
-import { getUsers } from "@/utils/fetchData";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import Register from "./Register";
+import { getUsers } from "@/lib/fetchData";
+import AddUserModal from "./AddUserModal";
 import UsersRow from "./UsersRow";
 
-const AllUsers = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    getUsers().then((data) => setUsers(data));
-  }, []);
-
-  const handleRemove = async (id, user) => {
-    console.log(id);
-    const confirmed = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to remove him!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, remove him!",
-    });
-    if (confirmed.isConfirmed) {
-      try {
-        const res = await axios.delete(
-          `https://baraqa-properties-server.vercel.app/api/users/${id}`
-        );
-        if (res.data.deletedCount > 0) {
-          refetch();
-          Swal.fire({
-            title: "Removed!",
-            text: `${user?.name} has been Removed from users lists.`,
-            icon: "success",
-          });
-        }
-      } catch (error) {
-        console.error("Error removing user:", error);
-        Swal.fire({
-          title: "Error",
-          text: "An error occurred while Removing User.",
-          icon: "error",
-        });
-      }
-    }
-  };
+const AllUsers = async () => {
+  const users = await getUsers();
 
   return (
     <div className="max-w-5xl mx-auto w-[95vw] md:w-auto h-[83vh]">
       <div className="mt-5 md:mt-20">
-        <button
-          onClick={() => setShowModal(true)}
-          className="btn btn-ghost bg-[#a9a3cf] hover:bg-[#311A36] transform duration-1000 text-white p-2 rounded-md w-[120px]"
-        >
-          ADD USER
-        </button>
-        <Register showModal={showModal} setShowModal={setShowModal} />
+        <AddUserModal />
       </div>
       <div className=" bg-white mt-2 md:mt-5">
         <div className=" p-4 ">
@@ -87,12 +36,7 @@ const AllUsers = () => {
               </thead>
               <tbody>
                 {users?.map((user, i) => (
-                  <UsersRow
-                    key={user._id}
-                    handleRemove={handleRemove}
-                    user={user}
-                    i={i}
-                  />
+                  <UsersRow key={user._id} user={user} i={i} />
                 ))}
               </tbody>
             </table>

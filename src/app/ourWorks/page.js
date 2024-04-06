@@ -1,7 +1,7 @@
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import SearchDemo from "@/components/ui/SearchDemo";
-import { getDemos } from "@/utils/fetchData";
+import { getDemos } from "@/lib/fetchData";
 import "aos/dist/aos.css";
 import AllDemos from "./AllDemos";
 
