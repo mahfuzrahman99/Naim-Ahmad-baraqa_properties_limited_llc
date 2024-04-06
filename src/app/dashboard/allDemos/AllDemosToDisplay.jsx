@@ -2,7 +2,6 @@
 import DemoTableBody from "./DemoTableBody";
 
 const AllDemosToDisplay = ({ demosToDisplay }) => {
-  console.log(demosToDisplay)
   return (
     <div className="max-w-5xl mx-auto w-[300px] md:w-auto">
       <div className="bg-gray-100 md:p-4 py-4 md:py-0">
