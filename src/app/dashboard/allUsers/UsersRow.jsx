@@ -36,12 +36,12 @@ const UsersRow = ({ user, i }) => {
                 </button>
               </div>
               
-              <UpdateUserRole/>
+              <UpdateUserRole user={user}/>
             </div>
           </div>
         </td>
         <td className="py-2 px-4 border-b-4">
-         <RemoveUser/>
+         <RemoveUser user={user}/>
         </td>
       </tr>
     </>

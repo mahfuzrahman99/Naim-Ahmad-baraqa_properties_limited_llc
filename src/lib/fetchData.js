@@ -16,20 +16,6 @@ export const loginUser = async (userData) => {
   return res.json();
 };
 
-export const createUser = async (userData) => {
-  const res = await fetch(
-    "https://baraqa-properties-server.vercel.app/api/users",
-    {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    }
-  );
-  return res.json();
-};
-
 export const getDemos = async () => {
   const res = await fetch(
     "https://baraqa-properties-server.vercel.app/api/demos",
@@ -92,5 +78,46 @@ export const getUsers = async () => {
       },
     }
   );
+  return res.json();
+};
+
+export const createUser = async (userData) => {
+  const res = await fetch(
+    "https://baraqa-properties-server.vercel.app/api/users",
+    {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    }
+  );
+  revalidateTag("users");
+  return res.json();
+};
+
+export const deleteUser = async (userId) => {
+  const res = await fetch(
+    `https://baraqa-properties-server.vercel.app/api/users/${userId}`,
+    {
+      method: "delete",
+    }
+  );
+  revalidateTag("users");
+  return res.json();
+};
+
+export const patchUserRole = async (userId, role) => {
+  const res = await fetch(
+    `https://baraqa-properties-server.vercel.app/api/users/${userId}`,
+    {
+      method: "patch",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(role),
+    }
+  );
+  revalidateTag("users");
   return res.json();
 };

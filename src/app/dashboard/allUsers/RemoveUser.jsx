@@ -1,8 +1,10 @@
 "use client"
 
+import { deleteUser } from "@/lib/fetchData";
 import { IoPersonRemoveOutline } from "react-icons/io5";
+import Swal from 'sweetalert2';
 
-export default function RemoveUser() {
+export default function RemoveUser({user}) {
   const handleRemove = async (id, user) => {
     console.log(id);
     const confirmed = await Swal.fire({
@@ -16,11 +18,8 @@ export default function RemoveUser() {
     });
     if (confirmed.isConfirmed) {
       try {
-        const res = await axios.delete(
-          `https://baraqa-properties-server.vercel.app/api/users/${id}`
-        );
-        if (res.data.deletedCount > 0) {
-          refetch();
+        const res = await deleteUser(id)
+        if (res.deletedCount > 0) {
           Swal.fire({
             title: "Removed!",
             text: `${user?.name} has been Removed from users lists.`,

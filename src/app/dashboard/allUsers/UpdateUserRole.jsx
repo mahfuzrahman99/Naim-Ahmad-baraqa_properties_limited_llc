@@ -1,8 +1,8 @@
 "use client"
-import axios from 'axios';
+import { patchUserRole } from '@/lib/fetchData';
 import Swal from 'sweetalert2';
 
-export default function updateUserRole() {
+export default function updateUserRole({user}) {
 
   const handleUpdateUserRole = async (event) => {
     const role = event.target.innerText;
@@ -20,7 +20,7 @@ export default function updateUserRole() {
     if (confirmed.isConfirmed) {
       try {
         console.log(role);
-        const res = await axios.patch(`/api/users/${user._id}`, { role });
+        const res = await patchUserRole(user.id, {role});
         if (res.data.modifiedCount > 0) {
           refetch();
           Swal.fire({
