@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+import { updateDemo } from "@/lib/fetchData";
 import axios from "axios";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
@@ -7,7 +8,7 @@ import Swal from "sweetalert2";
 // import useFetchDemos from "../../hooks/useFetchDemos";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
-const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
+const UpdateDemo = ({ showModal, setShowModal, demo }) => {
   const {
     handleSubmit,
     register,
@@ -45,15 +46,11 @@ const UpdateDemo = ({ showModal, setShowModal, demo, refetch }) => {
         demo_description: data.demo_description,
         demo_category: data.demo_category,
       };
-      console.log(demoItem);
-      const demoRes = await axios.patch(
-        `https://baraqa-properties-server.vercel.app/api/demos/${_id}`,
-        demoItem
-      );
-      console.log("console from patch request", demoRes.data);
-      if (demoRes.data.modifiedCount) {
+      // console.log(demoItem);
+      const demoRes = await updateDemo(_id, demoItem)
+      console.log("console from patch request", demoRes);
+      if (demoRes.modifiedCount) {
         reset();
-        refetch();
         Swal.fire({
           position: "top",
           icon: "success",

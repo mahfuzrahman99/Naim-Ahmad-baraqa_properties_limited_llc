@@ -50,7 +50,7 @@ const AllDemosRow = ({ demo, i }) => {
         <UpdateDemoModal demo={demo}/>
         </td>
         <td className="py-2 px-4 border-b-4">
-          <DeleteDemoButton/>
+          <DeleteDemoButton demo={demo}/>
         </td>
       </tr>
     </>

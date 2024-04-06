@@ -1,8 +1,8 @@
 "use client";
+import { postDemo } from "@/lib/fetchData";
 /* eslint-disable react/prop-types */
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
@@ -15,20 +15,23 @@ const AddDemo = ({ showModal, setShowModal }) => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useRouter();
 
   const onSubmit = async (data) => {
     console.log(data);
 
     // image upload to imgbb and then get an url
-    const imageFile = { image: data.Before_Screen_Shot[0] };
-    const res = await axios.post(image_hosting_api, imageFile, {
+    const beforeImage = new FormData();
+    beforeImage.append("image", data.demo_before_image[0]);
+    
+    const res = await axios.post(image_hosting_api, beforeImage, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
-    const imageFile1 = { image: data.After_Screen_Shot[0] };
-    const res1 = await axios.post(image_hosting_api, imageFile1, {
+    
+    const afterImage = new FormData()
+    afterImage.append('image', data.demo_after_image[0])
+    const res1 = await axios.post(image_hosting_api, afterImage, {
       headers: {
         "content-type": "multipart/form-data",
       },
@@ -42,13 +45,10 @@ const AddDemo = ({ showModal, setShowModal }) => {
         demo_description: data.demo_description,
         demo_category: data.demo_category,
       };
-      console.log(demoItem);
-      const houseRes = await axios.post(
-        "https://baraqa-properties-server.vercel.app/api/demos",
-        demoItem
-      );
-      console.log(houseRes.data);
-      if (houseRes.data.insertedId) {
+      
+      const houseRes = await postDemo(demoItem);
+      
+      if (houseRes.insertedId) {
         // show success popup
         reset();
         Swal.fire({
@@ -58,7 +58,7 @@ const AddDemo = ({ showModal, setShowModal }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate.push("/dashboard/allDemos");
+        setShowModal(false)
       }
     }
   };

@@ -1,9 +1,9 @@
 "use client"
-import axios from "axios";
+import { deleteDemo } from "@/lib/fetchData";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 
-export default function DeleteDemoButton() {
+export default function DeleteDemoButton({demo}) {
   const handleDelete = async (id, demo) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
@@ -18,10 +18,9 @@ export default function DeleteDemoButton() {
 
     if (confirmed.isConfirmed) {
       try {
-        const res = await axios.delete(`http://localhost:3000/api/demos/${id}`);
-        console.log("console log from hare", res.data);
-        if (res.data.deletedCount > 0) {
-          getDemos()
+        const data = await deleteDemo(id);
+        // console.log("console log from hare", res.data);
+        if (data.deletedCount > 0) {
           Swal.fire({
             title: "Deleted!",
             text: `${demo?.projectName} has been delete from demos lists.`,
