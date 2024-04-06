@@ -19,10 +19,9 @@ export default function updateUserRole({user}) {
 
     if (confirmed.isConfirmed) {
       try {
-        console.log(role);
-        const res = await patchUserRole(user.id, {role});
-        if (res.data.modifiedCount > 0) {
-          refetch();
+        console.log(user._id, role);
+        const res = await patchUserRole(user._id, {role});
+        if (res.modifiedCount > 0) {
           Swal.fire({
             title: "maked!",
             text: `${user?.name} has been maked ${user.role}.`,

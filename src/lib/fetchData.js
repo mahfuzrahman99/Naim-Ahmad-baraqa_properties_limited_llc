@@ -47,7 +47,7 @@ export const updateDemo = async (demoID, demoData) => {
   const res = await fetch(
     `https://baraqa-properties-server.vercel.app/api/demos/${demoID}`,
     {
-      method: "patch",
+      method: "put",
       headers: {
         "content-type": "application/json",
       },
@@ -108,10 +108,11 @@ export const deleteUser = async (userId) => {
 };
 
 export const patchUserRole = async (userId, role) => {
+  console.log(userId, JSON.stringify(role));
   const res = await fetch(
     `https://baraqa-properties-server.vercel.app/api/users/${userId}`,
     {
-      method: "patch",
+      method: "put",
       headers: {
         "Content-Type": "application/json",
       },
