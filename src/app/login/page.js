@@ -1,20 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import loginImg from "@/assets/login.jpg";
+import { loginUser } from "@/lib/fetchData";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
-import { BsEye } from "react-icons/bs";
-import { BsEyeSlash } from "react-icons/bs";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
   const navigate = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +23,8 @@ const Login = () => {
       password: password,
     };
     try {
-      const data = await signInUser(userCredentials);
-      console.log(data);
+      const data = await loginUser(userCredentials);
+      signInUser(data);
       setIsLoading(false);
       if (data && data._id) {
         Swal.fire({

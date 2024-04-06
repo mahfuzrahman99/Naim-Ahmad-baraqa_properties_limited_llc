@@ -1,6 +1,5 @@
 "use client"
 
-import { loginUser } from "@/lib/fetchData";
 import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
@@ -14,13 +13,11 @@ const AuthProvider = ({ children }) => {
     setUser(storedUser)
   }, [])
 
-  const signInUser = async (userInfo) => {
-    const userData = await loginUser(userInfo)
-    setUser(userData);
+  const signInUser = (userInfo) => {
+    setUser(userInfo);
     // Local storage e user info store kora
-    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userInfo));
     setIsLoading(false)
-    return userData;
   };
 
   const logOut = () => {
