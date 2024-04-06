@@ -1,6 +1,5 @@
-import React from "react";
-import Image from "next/image";
 import navLogo from "@/assets/logo.png";
+import Image from "next/image";
 
 const Banner = () => {
   return (
@@ -16,7 +15,7 @@ const Banner = () => {
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
           <div className="">
-            <Image className=" rounded-lg" src={navLogo} alt="" />
+            <Image className="rounded-lg" src={navLogo} alt="" />
           </div>
         </div>
       </div>

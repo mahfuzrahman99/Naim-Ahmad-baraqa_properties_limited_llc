@@ -1,17 +1,11 @@
 /* eslint-disable react/prop-types */
-import { getDemos } from "@/utils/fetchData";
-import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
-import { MdOutlineSecurityUpdateGood } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
-import Swal from "sweetalert2";
-import UpdateDemo from "./UpdateDemo";
+import DeleteDemoButton from "./DeleteDemoButton";
+import UpdateDemoModal from "./UpdateDemoModal";
 
 const AllDemosRow = ({ demo, i }) => {
-  const [showModal, setShowModal] = useState(false);
   const {
     demo_Name,
     demo_before_image,
@@ -20,40 +14,7 @@ const AllDemosRow = ({ demo, i }) => {
     demo_category,
   } = demo || {};
 
-  const handleDelete = async (id, demo) => {
-    const confirmed = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to delete this!",
-      icon: "warning",
-      iconColor: "#A9A3CF",
-      showCancelButton: true,
-      confirmButtonColor: "#A9A3CF",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete this!",
-    });
-
-    if (confirmed.isConfirmed) {
-      try {
-        const res = await axios.delete(`http://localhost:3000/api/demos/${id}`);
-        console.log("console log from hare", res.data);
-        if (res.data.deletedCount > 0) {
-          getDemos()
-          Swal.fire({
-            title: "Deleted!",
-            text: `${demo?.projectName} has been delete from demos lists.`,
-            icon: "success",
-          });
-        }
-      } catch (error) {
-        console.error("Error deleting demo:", error);
-        Swal.fire({
-          title: "Error",
-          text: "An error occurred while deleting demo.",
-          icon: "error",
-        });
-      }
-    }
-  };
+ 
   return (
     <>
       <tr className="bg-gray-100 text-xs text-black font-semibold">
@@ -86,29 +47,10 @@ const AllDemosRow = ({ demo, i }) => {
           {demo_description?.slice(0, 10)}
         </td>
         <td className="py-2 px-4 border-b-4 p-1 text-xl w-4">
-          <button
-            onClick={() => setShowModal(true)}
-            className="flex justify-center m-1 p-1 rounded bg-[#a9a3cf] shadow-lg"
-          >
-            <span className="text-4xl">
-              <MdOutlineSecurityUpdateGood />
-            </span>
-          </button>
-          <UpdateDemo
-            demo={demo}
-            showModal={showModal}
-            setShowModal={setShowModal}
-          />
+        <UpdateDemoModal demo={demo}/>
         </td>
         <td className="py-2 px-4 border-b-4">
-          <button
-            onClick={() => handleDelete(demo._id, demo)}
-            className="bg-red-500 text-white px-2 py-1 rounded ml-2 shadow-lg"
-          >
-            <span className="text-3xl">
-              <RiDeleteBin6Line />
-            </span>
-          </button>
+          <DeleteDemoButton/>
         </td>
       </tr>
     </>

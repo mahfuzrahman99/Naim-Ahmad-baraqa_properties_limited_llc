@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
-import AllDemosRow from "./AllDemosRow";
 
-const AllDemosToDisplay = ({ demosToDisplay, refetch }) => {
+import DemoTableBody from "./DemoTableBody";
+
+const AllDemosToDisplay = ({ demosToDisplay }) => {
+  console.log(demosToDisplay)
   return (
     <div className="max-w-5xl mx-auto w-[300px] md:w-auto">
       <div className="bg-gray-100 md:p-4 py-4 md:py-0">
@@ -25,16 +26,7 @@ const AllDemosToDisplay = ({ demosToDisplay, refetch }) => {
                 <th className="py-2 px-4 border-b">Delete</th>
               </tr>
             </thead>
-            <tbody className="">
-              {demosToDisplay?.map((demo, i) => (
-                <AllDemosRow
-                  key={demo._id}
-                  demo={demo}
-                  refetch={refetch}
-                  i={i}
-                />
-              ))}
-            </tbody>
+            <DemoTableBody demosToDisplay={demosToDisplay}/>
           </table>
         </div>
       </div>
