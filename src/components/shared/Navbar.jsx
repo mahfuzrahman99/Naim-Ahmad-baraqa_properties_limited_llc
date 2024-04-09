@@ -23,7 +23,7 @@ const Navbar = () => {
         <NavLink
           href="/ourWorks"
         >
-          OUR WORKS
+          OUR WORK
         </NavLink>
       </li>
       <DashboardRoute/>
