@@ -1,5 +1,7 @@
-import { PhotoView } from "@/components/ui/PhotoView";
+// import { PhotoView } from "@/components/ui/PhotoView";
 import Image from "next/image";
+import { PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 
 export default function DemoOneCard({demo}) {
@@ -13,8 +15,8 @@ export default function DemoOneCard({demo}) {
   } = demo || {};
 
   return (
-    <div className="md:hero md:hero-content gap-2 my-2 px-2 md:mb-8 md:border-8 rounded-2xl h-[870px] md:h-[520px] bg-[#A9A3CF] ">
-    <div className="flex justify-center">
+    <div className="md:hero md:hero-content gap-2 px-2 md:mb-8 md:border-8 rounded-2xl h-[870px] md:h-[520px] bg-[#A9A3CF]">
+    <div className="flex justify-center items-center">
       <div className="md:relative rounded-t-lg">
         <div className="md:w-11/12">
           <PhotoView src={demo_before_image}>
@@ -25,7 +27,6 @@ export default function DemoOneCard({demo}) {
               width={390}
               height={200}
               data-aos-duration="1000"
-              
               className="md:h-[230px] h-[200px] md:w-[390px] w-[300px] shadow-2xl rounded-lg pt-4 md:pt-auto"
               alt=""
             />
@@ -48,6 +49,7 @@ export default function DemoOneCard({demo}) {
         </div>
       </div>
     </div>
+    <div className="flex justify-center items-center">
     <div
       className="space-y-3 md:w-[450px] md:ml-10 mt-[230px] md:mt-auto"
       data-aos="zoom-in"
@@ -59,6 +61,7 @@ export default function DemoOneCard({demo}) {
         {demo_description}
       </h1>
       <h1 className="text-sm text-justify font-bold">{demo_category}</h1>
+    </div>
     </div>
   </div>
   )

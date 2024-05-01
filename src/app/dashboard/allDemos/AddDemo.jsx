@@ -121,14 +121,14 @@ const AddDemo = ({ showModal, setShowModal }) => {
                       Demo Description:
                     </label>
                     <textarea
-                      {...register("DEMO_DESCRIPTION", {
+                      {...register("demo_description", {
                         required: "Live link URL is required",
                       })}
                       className="w-full bg-white p-2 rounded-md mt-1"
                     />
-                    {errors.DEMO_DESCRIPTION && (
+                    {errors.demo_description && (
                       <p className="text-red-500">
-                        {errors.DEMO_DESCRIPTION.message}
+                        {errors.demo_description.message}
                       </p>
                     )}
                   </div>
