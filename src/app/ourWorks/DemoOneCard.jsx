@@ -27,7 +27,7 @@ export default function DemoOneCard({demo}) {
               width={390}
               height={200}
               data-aos-duration="1000"
-              className="md:h-[230px] h-[200px] md:w-[390px] w-[300px] shadow-2xl rounded-lg pt-4 md:pt-auto"
+              className="md:h-[230px] h-[200px] md:w-[390px] w-[300px] shadow-2xl rounded-lg pt-4 md:pt-0"
               alt=""
             />
           </PhotoView>
