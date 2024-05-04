@@ -19,11 +19,11 @@ export default function DeleteDemoButton({demo}) {
     if (confirmed.isConfirmed) {
       try {
         const data = await deleteDemo(id);
-        // console.log("console log from hare", res.data);
+        console.log("console log from hare", data);
         if (data.deletedCount > 0) {
           Swal.fire({
             title: "Deleted!",
-            text: `${demo?.projectName} has been delete from demos lists.`,
+            text: `${demo?.demo_Name} has been delete from demos lists.`,
             icon: "success",
           });
         }
