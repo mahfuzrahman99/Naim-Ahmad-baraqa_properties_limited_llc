@@ -1,13 +1,16 @@
 
 import { createUser } from "@/lib/fetchData";
 import axios from "axios";
+import { useState } from "react";
 import Swal from "sweetalert2";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
 const Register = ({ showModal, setShowModal }) => {
+  const [isLoading, setIsLoading] = useState(false);
 
   // console.log(loginUser);
   const handleSubmit = async (e) => {
+    setIsLoading(true)
     e.preventDefault();
 
     const formData = new FormData();
@@ -29,7 +32,9 @@ const Register = ({ showModal, setShowModal }) => {
       if (/^(?=.*[A-Z])(?=.*[\W_]).{6,}$/.test(password)) {
         createUser(userInfo).then((data) => {
           if (data.insertedId) {
+            setShowModal(false)
             e.target.reset();
+            setIsLoading(false)
             Swal.fire({
               position: "top",
               icon: "success",
@@ -119,11 +124,13 @@ const Register = ({ showModal, setShowModal }) => {
                     className="p-2 rounded-md bg-white text-black outline-none w-full"
                   />
                 </div>
-                <div className="w-[100px] mx-auto bg-[#0B0633] rounded col-span-2 mt-2">
+                <div className={`${isLoading ? "w-[130px]" : "w-[105px]"} mx-auto bg-[#0B0633] rounded col-span-2 mt-2`}>
                   <button
                     type="submit"
-                    className=" bg-gradient-to-r from-indigo-500 via-[#3a3271] to-pink-500 bg-clip-text text-transparent transform duration-1000 font-bold py-2 px-4 rounded "
-                  >
+                    className=" bg-gradient-to-r from-indigo-500 via-[#3a3271] to-pink-500 bg-clip-text text-transparent transform duration-1000 font-bold py-2 px-4 rounded  flex gap-2 items-center"
+                  >{isLoading ? (
+                    <span className="loading loading-spinner loading-xs text-white"></span>
+                  ) : null}
                     REGISTER
                   </button>
                 </div>

@@ -6,6 +6,7 @@ import UpdateDemo from "./UpdateDemo";
 export default function UpdateDemoModal({demo}) {
 
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -20,6 +21,8 @@ export default function UpdateDemoModal({demo}) {
       <UpdateDemo
         demo={demo}
         showModal={showModal}
+        setIsLoading={setIsLoading}
+        isLoading={isLoading}
         setShowModal={setShowModal}
       />
     </>

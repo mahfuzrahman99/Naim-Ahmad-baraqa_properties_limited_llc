@@ -3,11 +3,13 @@ import { postDemo } from "@/lib/fetchData";
 /* eslint-disable react/prop-types */
 
 import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
 const AddDemo = ({ showModal, setShowModal }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -17,6 +19,7 @@ const AddDemo = ({ showModal, setShowModal }) => {
 
 
   const onSubmit = async (data) => {
+    setIsLoading(true)
     console.log(data);
 
     // image upload to imgbb and then get an url
@@ -45,11 +48,11 @@ const AddDemo = ({ showModal, setShowModal }) => {
         demo_description: data.demo_description,
         demo_category: data.demo_category,
       };
-      
       const houseRes = await postDemo(demoItem);
       
       if (houseRes.insertedId) {
-        // show success popup
+        setShowModal(false)
+        setIsLoading(false)
         reset();
         Swal.fire({
           position: "top",
@@ -58,7 +61,6 @@ const AddDemo = ({ showModal, setShowModal }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setShowModal(false)
       }
     }
   };
@@ -171,11 +173,13 @@ const AddDemo = ({ showModal, setShowModal }) => {
                     )}
                   </div>
                 </div>
-                <div className="w-[90px] mx-auto bg-[#0B0633] rounded md:mt-4">
+                <div className={`${isLoading? "w-[115px]" : "w-[90px]"} mx-auto bg-[#0B0633] rounded md:mt-4`}>
                   <button
                     type="submit"
-                    className=" bg-gradient-to-r from-indigo-500 via-[#3a3271] to-pink-500 bg-clip-text text-transparent transform duration-1000 font-bold py-2 px-4 rounded "
-                  >
+                    className=" bg-gradient-to-r from-indigo-500 via-[#3a3271] to-pink-500 bg-clip-text text-transparent transform duration-1000 font-bold py-2 px-4 rounded flex gap-2 items-center"
+                  >{isLoading ? (
+                    <span className="loading loading-spinner loading-xs text-white"></span>
+                  ) : null}
                     SUBMIT
                   </button>
                 </div>

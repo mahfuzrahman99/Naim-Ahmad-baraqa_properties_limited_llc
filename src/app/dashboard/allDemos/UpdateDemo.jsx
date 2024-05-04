@@ -3,12 +3,19 @@
 import { updateDemo } from "@/lib/fetchData";
 import axios from "axios";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 // import useFetchDemos from "../../hooks/useFetchDemos";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=bb5a16f772589f5febc04c57a62be37d`;
 
-const UpdateDemo = ({ showModal, setShowModal, demo }) => {
+const UpdateDemo = ({
+  isLoading,
+  setIsLoading,
+  showModal,
+  setShowModal,
+  demo,
+}) => {
   const {
     handleSubmit,
     register,
@@ -25,6 +32,7 @@ const UpdateDemo = ({ showModal, setShowModal, demo }) => {
   } = demo || {};
 
   const onSubmit = async (data) => {
+    setIsLoading(true);
     // image upload to imgbb and then get an url
     const imageFile = { image: data.demo_before_image[0] };
     const res = await axios.post(image_hosting_api, imageFile, {
@@ -47,9 +55,11 @@ const UpdateDemo = ({ showModal, setShowModal, demo }) => {
         demo_category: data.demo_category,
       };
       // console.log(demoItem);
-      const demoRes = await updateDemo(_id, demoItem)
+      const demoRes = await updateDemo(_id, demoItem);
       console.log("console from patch request", demoRes);
       if (demoRes.modifiedCount) {
+        setIsLoading(false);
+        setShowModal(false);
         reset();
         Swal.fire({
           position: "top",
@@ -58,7 +68,6 @@ const UpdateDemo = ({ showModal, setShowModal, demo }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setShowModal(false);
       } else {
         Swal.fire({
           icon: "error",
@@ -69,10 +78,14 @@ const UpdateDemo = ({ showModal, setShowModal, demo }) => {
     }
   };
 
+  const onCloseModal = () => {
+    // setShowModal(false);
+  };
+
   return (
     <>
       {showModal && (
-        <dialog id="my_modal_1" className="modal" open>
+        <dialog id="my_modal_1" className="modal" open onClick={onCloseModal}>
           <div
             className="modal-box max-h-[95vh] max-w-[830px] mx-auto"
             style={{ scrollbarWidth: "none" }}
@@ -216,11 +229,18 @@ const UpdateDemo = ({ showModal, setShowModal, demo }) => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[110px] mx-auto bg-[#0B0633] rounded">
+                <div
+                  className={`${
+                    isLoading ? "w-[130px]" : "w-[105px]"
+                  } mx-auto bg-[#0B0633] rounded col-span-2 mt-2`}
+                >
                   <button
                     type="submit"
-                    className=" bg-gradient-to-r from-indigo-500 via-[#3a3271] to-pink-500 bg-clip-text text-transparent transform duration-1000 font-bold py-2 px-4 rounded "
+                    className=" bg-gradient-to-r from-indigo-500 via-[#3a3271] to-pink-500 bg-clip-text text-transparent transform duration-1000 font-bold py-2 px-4 rounded flex gap-2 items-center"
                   >
+                    {isLoading ? (
+                      <span className="loading loading-spinner loading-xs text-white"></span>
+                    ) : null}
                     UPDATE
                   </button>
                 </div>
