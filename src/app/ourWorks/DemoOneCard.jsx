@@ -16,10 +16,10 @@ export default function DemoOneCard({demo}) {
 
   return (
     // our works
-    <div className="md:hero md:hero-content gap-2 px-2 md:mb-8 md:border-8 rounded-2xl h-[650px] md:h-[520px] bg-[#A9A3CF]">
+    <div className="md:hero md:hero-content gap-2 px-2 md:mb-8 md:border-8 rounded-2xl h-[650px] md:h-[520px] bg-[#A9A3CF] mb-4">
     <div className="flex justify-center items-center">
-      <div className="md:relative rounded-t-lg">
-        <div className="md:w-11/12">
+      <div className="md:relative rounded-lg">
+        <div className="md:w-11/12 rounded-lg">
           <PhotoView src={demo_before_image}>
             <Image
               src={demo_before_image}
@@ -28,7 +28,7 @@ export default function DemoOneCard({demo}) {
               width={390}
               height={200}
               data-aos-duration="1000"
-              className="md:h-[230px] h-[200px] w-[340px] shadow-2xl rounded-lg pt-4 md:pt-0"
+              className="md:h-[230px] h-[200px] w-[340px] shadow-2xl rounded-lg mt-4 md:pt-0"
               alt=""
             />
           </PhotoView>
