@@ -15,7 +15,8 @@ export default function DemoOneCard({demo}) {
   } = demo || {};
 
   return (
-    <div className="md:hero md:hero-content gap-2 px-2 md:mb-8 md:border-8 rounded-2xl h-[870px] md:h-[520px] bg-[#A9A3CF]">
+    // our works
+    <div className="md:hero md:hero-content gap-2 px-2 md:mb-8 md:border-8 rounded-2xl h-[650px] md:h-[520px] bg-[#A9A3CF]">
     <div className="flex justify-center items-center">
       <div className="md:relative rounded-t-lg">
         <div className="md:w-11/12">
@@ -27,7 +28,7 @@ export default function DemoOneCard({demo}) {
               width={390}
               height={200}
               data-aos-duration="1000"
-              className="md:h-[230px] h-[200px] md:w-[390px] w-[300px] shadow-2xl rounded-lg pt-4 md:pt-0"
+              className="md:h-[230px] h-[200px] w-[340px] shadow-2xl rounded-lg pt-4 md:pt-0"
               alt=""
             />
           </PhotoView>
@@ -42,7 +43,7 @@ export default function DemoOneCard({demo}) {
               height={200}
               
               data-aos-duration="1000"
-              className="md:h-[190px] h-[200px] md:w-[320px] w-[300px] absolute md:top-[70%] md:-right-[10%] shadow-2xl md:border-8 border-white rounded-lg my-2 md:my-auto"
+              className="md:h-[190px] h-[200px] w-[340px] absolute md:top-[70%] md:-right-[10%] shadow-2xl md:border-8 border-white rounded-lg my-2 md:my-auto"
               alt=""
             />
           </PhotoView>
